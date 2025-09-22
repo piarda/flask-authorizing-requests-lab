@@ -45,10 +45,13 @@ with app.app_context():
             content=content,
             preview=preview,
             minutes_to_read=randint(1,20),
-            is_member_only = rc([True, False, False])
+            is_member_only=rc([True, False, False])
         )
 
         articles.append(article)
+    
+    if articles:
+        articles[0].is_member_only = True
 
     db.session.add_all(articles)
     
